@@ -1,0 +1,37 @@
+<style>
+    .table-bordered {
+        border-collapse: collapse;
+    }
+    .table-bordered td {
+        border: 1px solid black;
+    }
+    .table-bordered td:first-child {
+        font-weight: bold;
+    }
+</style>
+
+<table width="100%" class="table-bordered">
+    <tr>
+        <td>N</td>
+        <td>ФИО СТУДЕНТА</td>
+        <td>ВОЗРАСТ СТУДЕНТА</td>
+        <td>В КАКОМ КУРСЕ УЧИТСЯ</td>
+        <td>КАКОЙ GPA</td>
+        <td>СПЕЦИАЛИЗАЦИЯ</td>
+        <!-- <td>Фото</td> -->
+    </tr>
+    {% set counter = 0 %}
+    {% for key, value in g1.items() %}
+    <tr>
+        {% set counter = counter + 1 %}
+        <td>{{ counter }}</td>
+        <td>{{ key }}</td>
+        <td>{{ g2[key] }}</td>
+        <td>{{ g3[key] }}</td>
+        <td>{{ g1[key] }}</td>
+        <td>{{ g4[key] }}</td>
+
+    </tr>
+    {% endfor %}
+    
+</table>
