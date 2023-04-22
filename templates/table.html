@@ -1,27 +1,51 @@
 <style>
-    .table-bordered {
-        border-collapse: collapse;
+    table {
+        border-collapse: separate;
+        border-spacing: 0;
+        width: 100%;
     }
-    .table-bordered td {
+    th, td {
+        text-align: left;
+        padding: 8px;
         border: 1px solid black;
     }
-    .table-bordered td:first-child {
-        font-weight: bold;
+    th {
+        background-color: #4CAF50;
+        color: white;
+    }
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    .button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 16px;
+    }
+    .button:hover {
+        background-color: #3e8e41;
     }
 </style>
 
-<table width="100%" class="table-bordered">
+<form method="TABLE" enctype="multipart/form-data"></form>
+<table>
     <tr>
-        <td>N</td>
-        <td>ФИО СТУДЕНТА</td>
-        <td>ВОЗРАСТ СТУДЕНТА</td>
-        <td>В КАКОМ КУРСЕ УЧИТСЯ</td>
-        <td>КАКОЙ GPA</td>
-        <td>СПЕЦИАЛИЗАЦИЯ</td>
-        <!-- <td>Фото</td> -->
+        <th>N</th>
+        <th><button class="button" type="submit" name="by_name" value="yes">ФИО СТУДЕНТА</button></th>
+        <th><button class="button" type="submit" name="by_year" value="by_year">ВОЗРАСТ СТУДЕНТА</button></th>
+        <th><button class="button" type="submit" name="by_uni" value="by_uni">НА КАКОМ КУРСЕ УЧИТСЯ</button></th>
+        <th><button class="button" type="submit" name="by_gpa" value="by_gpa">КАКОЙ GPA</button></th>
+        <th><button class="button" type="submit" name="by_spec" value="by_spec">СПЕЦИАЛИЗАЦИЯ</button></th>
     </tr>
     {% set counter = 0 %}
-    {% for key, value in g1.items() %}
+    {% for key in my_list %}
     <tr>
         {% set counter = counter + 1 %}
         <td>{{ counter }}</td>
@@ -30,8 +54,7 @@
         <td>{{ g3[key] }}</td>
         <td>{{ g1[key] }}</td>
         <td>{{ g4[key] }}</td>
-
     </tr>
     {% endfor %}
-    
 </table>
+</form>

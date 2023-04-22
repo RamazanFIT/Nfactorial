@@ -26,7 +26,7 @@ def check_float(str_1):
             return True
         else:
             return False
-@app.route('/', methods=['GET', 'POST', 'sort_name'])
+@app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
         flag = True
@@ -68,7 +68,7 @@ def index():
                 flag = False
            
             if not flag:
-                return "Sorry, this data is wrong, try again...."
+                return render_template("sorry.html")
             g1[firstname + "_" + lastname] = gpa
             
             g2[firstname + "_" + lastname] = age
@@ -84,7 +84,7 @@ def index():
             g2_ = json.dumps(g2)
             g3_ = json.dumps(g3)
             g4_ = json.dumps(g4)
-            photos = open("Image.json", "w")
+            # photos = open("Image.json", "w")
             g_p_a = open("GPA.json", 'w')
             age_ = open("year.json", "w")
             course_ = open("Which_course.json", "w")
@@ -95,16 +95,36 @@ def index():
             course_.write(g3_)
             special_.write(g4_)
             
-            return "Студент успешно внесен в базу."
+            return render_template("success.html")
         if "get_all_student" in request.form:
-            # print(g0)
+            my_list = list(g1.keys())
             # return render_template("table.html",g0 = g0, g1 = g1, g2 = g2, g3 = g3, g4 = g4)
-            return render_template("table.html", g1 = g1, g2 = g2, g3 = g3, g4 = g4)
-
+            return render_template("table.html",my_list = my_list, g1 = g1, g2 = g2, g3 = g3, g4 = g4)
+        elif "by_gpa" in request.form:
+            g1 = sorted_dict = dict(sorted(g1.items(), key=lambda x: x[1]))
+            my_list = list(g1.keys())
+            return render_template("table.html",my_list = my_list, g1 = g1, g2 = g2, g3 = g3, g4 = g4)
+        elif "by_name" in request.form:
+            g1 = sorted_dict = dict(sorted(g1.items(), key=lambda x: x[0]))
+            my_list = list(g1.keys())
+            return render_template("table.html",my_list = my_list, g1 = g1, g2 = g2, g3 = g3, g4 = g4)
+        elif "by_year" in request.form:
+            g2 = sorted_dict = dict(sorted(g2.items(), key=lambda x: x[1]))
+            my_list = list(g2.keys())
+            return render_template("table.html",my_list = my_list, g1 = g1, g2 = g2, g3 = g3, g4 = g4)
+        elif "by_uni" in request.form:
+            g3 = sorted_dict = dict(sorted(g3.items(), key=lambda x: x[1]))
+            my_list = list(g3.keys())
+            return render_template("table.html",my_list = my_list, g1 = g1, g2 = g2, g3 = g3, g4 = g4)
+        elif "by_spec" in request.form:
+            g4 = sorted_dict = dict(sorted(g4.items(), key=lambda x: x[1]))
+            my_list = list(g4.keys())
+            return render_template("table.html",my_list = my_list, g1 = g1, g2 = g2, g3 = g3, g4 = g4)
+       
         if "delete_user" in request.form:
             student_to_del = request.form["delete_user"]
             if not check_of_digit(student_to_del) and len(student_to_del) != 0:
-                return "Sorry, this data is wrong, try again...."
+                return render_template("sorry.html")
             if student_to_del in g1:
                 # del g0[student_to_del]
                 del g1[student_to_del]
@@ -127,8 +147,8 @@ def index():
                 course_.write(g3_)
                 special_.write(g4_)
             else:
-                return "Такого студента не существует"
-                
+                return render_template("doesnotexist.html")
+            
         
     return render_template('index.html')
 

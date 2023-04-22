@@ -1,41 +1,138 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Ввод данных</title>
-  </head>
-  <body>
-    <h1>Введите данные нового студента:</h1>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Ввод данных</title>
+</head>
+  
+<body>
+  <style>
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    body,
+    h1, h2, h3, h4, h5, h6, a, p{
+        margin: 0;
+        padding: 0;
+    }
+
+    .label {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+    .form{
+      width: 70%;
+      height: 50%;
+      margin: 20px 0 0 20px;
+    }
+
+    .form__data {
+      width: 300px;
+    }
+
+    .form__items {
+      display: flex;
+      margin-top: 10px;
+    }
+    
+    .form__items-item {
+      margin-bottom: 10px;
+      width: 100%;
+      border-radius: 7px;
+      outline: none;
+      padding: 5px; 
+      font-size: 16px;
+    }
+
+    .form__item {
+      margin: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* button */
+    
+    .btn {
+      background-color: #0D6BF5;
+      border: 1px solid #0D6BF5;
+      border-radius: 5px;
+      padding: 6px 15px;  
+      color: #fff;
+      transition: all 0.2s linear;
+      font-size: 16px;
+      margin: 20px 0;
+    }
+    .btn-sent {
+      display: block;
+    }
+    .btn:hover {
+      background-color: #133d7c;
+      border-color: #133d7c;
+    }
+
+    .delete__input {
+      border-radius: 7px;
+      outline: none;
+      padding: 5px;
+      padding-right: 40px; 
+      font-size: 16px;
+    }
+    
+  </style>
+  
+  <h1>Введите данные нового студента:</h1>
     <form method="POST" enctype="multipart/form-data">
-      <label for="firstname">Имя:</label>
-      <input type="text" id="firstname" name="firstname"><br><br> 
+      <div class="form">
 
-      <label for="lastname">Фамилия:</label>
-      <input type="text" id="lastname" name="lastname"><br><br>
+        <div class="form__data">
+              <label class="label" for="firstname">Имя:</label>
+              <input class="form__items-item" type="text" id="firstname" name="firstname" placeholder="Введите имя">
+              
+              <label class="label" for="lastname">Фамилия:</label>
+              <input class="form__items-item" type="text" id="lastname" name="lastname" placeholder="Введите фамилию">
+              
+              <label class="label" for="age">Возраст:</label>          
+              <input class="form__items-item" type="text" id="age" name="age" placeholder="Введите возраст">
+            
+            <div class="form__items">
+              <input class="form__items-item" type="text" id="course" name="course" placeholder="Введите курс">
+              <input class="form__items-item" type="gpa" id="gpa" name="gpa" placeholder="Введите GPA">
+            </div>
 
-      <label for="age">Возраст:</label>
-      <input type="text" id="age" name="age"><br><br> 
+            <label class="label" for="special">Специальность:</label>
+            <input class="form__items-item" type="special" id="special" name="special" placeholder="Введите специальность">
+            
+        </div>
+
+      </div>
+  
+        <!-- <input class="file__btn" type="file" name="image"> important -->
+
+        <!-- <button type="submit" name = "image" value = "image">Загрузить фото</button> -->
+  
+        
+        <button class="btn btn-sent" type="submit" name="first" value="Отправить">Отправить</button> 
+        
+        <button class="btn" type="submit" name="get_all_student" value="Получить список всех студентов">просто получить список всех студентов</button>
+        <button class="btn" type="submit" name="by_name" value="yes">Получить список всех студентов отсортированных по ФИО СТУДЕНТА</button><br>
+        <button class="btn" type="submit" name="by_year" value="by_year">Получить список всех студентов отсортированных по ВОЗРАСТЕ СТУДЕНТОВ</button>
+        <button class="btn" type="submit" name="by_uni" value="by_uni">Получить список всех студентов отсортированных по КУРСАМ</button><br>
+        <button class="btn" type="submit" name="by_gpa" value="by_gpa">Получить список всех студентов отсортированных по GPA</button>
+        <button class="btn" type="submit" name="by_spec" value="by_spec">Получить список всех студентов отсортированных по СПЕЦИАЛИЗАЦИЯМ</button>
+
+
+        <label class="label" for="delete_user">Отчислить студента:</label>
+        <input class="delete__input" type="text" id="delete_user" name="delete_user" placeholder="Введите имя и фамилию">
+        <button class="btn" type="submit" name="delete_user" value="delete_user">Отчислить студента</button>
       
-      <label for="course">Какой курс:</label>
-      <input type="text" id="course" name="course"><br><br>
-
-      <label for="gpa">GPA:</label>
-      <input type="gpa" id="gpa" name="gpa"><br><br>
-
-      <label for="special">Специальность:</label>
-      <input type="special" id="special" name="special"><br><br>
-
-      <!-- <input type="file" id = "image" name="image"><br><br> -->
-      
-      <!-- <button type="submit" name = "image" value = "image">Загрузить фото</button> -->
-
-      <!-- <input type="submit" name = "first" value="Отправить"><br><br> -->
-      <button type="submit" name="first" value="Отправить">Отправить</button><br><br> 
-      <!-- <input type="submit1" name = "get_all_student" value="Получить список всех студентов"><br><br> -->
-      <button type="submit" name="get_all_student" value="Получить список всех студентов">Получить список всех студентов</button><br><br> <br><br> 
-
-      <label for="delete_user">ИМЯ_ФАМИЛИЯ:</label>
-      <input type="text" id="delete_user" name="delete_user">
-      <button type="submit" name="delete_user" value="delete_user">Отчислить студента</button><br><br> 
+      </div>
     </form>
-    </body>
+</body>
 </html>
