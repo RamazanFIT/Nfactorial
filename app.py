@@ -120,7 +120,23 @@ def index():
             g4 = sorted_dict = dict(sorted(g4.items(), key=lambda x: x[1]))
             my_list = list(g4.keys())
             return render_template("table.html",my_list = my_list, g1 = g1, g2 = g2, g3 = g3, g4 = g4)
-       
+        if "find_user" in request.form:
+            find_user = request.form['find']
+            print(find_user)
+            g_p_a = open("GPA.json")
+            g1 = json.load(g_p_a)
+            my_list = list(g1.keys())
+            # print(my_list)
+            if not check_of_digit(find_user) or len(find_user) == 0:
+                return render_template("sorry.html")
+            elif find_user not in my_list:
+                return render_template("doesnotexist.html")
+            else:
+                # return render_template("table.html", )
+                # my_list = list(g1.keys())
+                my_list = [find_user]
+                return render_template("table.html",my_list = my_list, g1 = g1, g2 = g2, g3 = g3, g4 = g4)
+
         if "delete_user" in request.form:
             student_to_del = request.form["delete_user"]
             if not check_of_digit(student_to_del) and len(student_to_del) != 0:
@@ -148,8 +164,8 @@ def index():
                 special_.write(g4_)
             else:
                 return render_template("doesnotexist.html")
-            
         
+
     return render_template('index.html')
 
 if __name__ == '__main__':

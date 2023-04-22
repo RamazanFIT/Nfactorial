@@ -84,6 +84,13 @@
       padding-right: 40px; 
       font-size: 16px;
     }
+    .find__input {
+      border-radius: 7px;
+      outline: none;
+      padding: 5px;
+      padding-right: 40px; 
+      font-size: 16px;
+    }
     
   </style>
   
@@ -93,7 +100,7 @@
 
         <div class="form__data">
               <label class="label" for="firstname">Имя:</label>
-              <input class="form__items-item" type="text" id="firstname" name="firstname" placeholder="Введите имя">
+              <input class="form__items-item" type="text" id="firstname" name="firstname" placeholder="Введите имя">  
               
               <label class="label" for="lastname">Фамилия:</label>
               <input class="form__items-item" type="text" id="lastname" name="lastname" placeholder="Введите фамилию">
@@ -112,7 +119,7 @@
         </div>
 
       </div>
-  
+      <div>
         <!-- <input class="file__btn" type="file" name="image"> important -->
 
         <!-- <button type="submit" name = "image" value = "image">Загрузить фото</button> -->
@@ -120,6 +127,9 @@
         
         <button class="btn btn-sent" type="submit" name="first" value="Отправить">Отправить</button> 
         
+        <input class="find__input" type="find" id="find" name="find" placeholder="Введите имя и фамилию">
+        <button class="btn 12" type="submit" name="find_user" value="Найти">Найти студента</button><br>
+              
         <button class="btn" type="submit" name="get_all_student" value="Получить список всех студентов">просто получить список всех студентов</button>
         <button class="btn" type="submit" name="by_name" value="yes">Получить список всех студентов отсортированных по ФИО СТУДЕНТА</button><br>
         <button class="btn" type="submit" name="by_year" value="by_year">Получить список всех студентов отсортированных по ВОЗРАСТЕ СТУДЕНТОВ</button>
@@ -131,8 +141,8 @@
         <label class="label" for="delete_user">Отчислить студента:</label>
         <input class="delete__input" type="text" id="delete_user" name="delete_user" placeholder="Введите имя и фамилию">
         <button class="btn" type="submit" name="delete_user" value="delete_user">Отчислить студента</button>
-      
       </div>
+      <div>
     </form>
 </body>
 </html>
